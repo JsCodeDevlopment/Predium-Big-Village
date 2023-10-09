@@ -1,44 +1,27 @@
+import { useEffect, useState } from "react";
 
-type BdSimulation = {
-  ap: string,
-  status: string
-  classe: string
-}[]
-
-const bdDataSimulation: BdSimulation = [
-  {
-    ap: "AP - 001",
-    status: "À Venda",
-    classe: "badge badge-accent",
-  },
-  {
-    ap: "AP - 002",
-    status: "À Venda",
-    classe: "badge badge-accent",
-  },
-  {
-    ap: "AP - 003",
-    status: "À Locação",
-    classe: "badge badge-accent",
-  },
-  {
-    ap: "AP - 004",
-    status: "Ocupado",
-    classe: "badge badge-ghost",
-  },
-  {
-    ap: "AP - 005",
-    status: "À Venda",
-    classe: "badge badge-accent",
-  },
-  {
-    ap: "AP - 006",
-    status: "Ocupado",
-    classe: "badge badge-ghost",
-  },
-];
-
+const fetchData = async (): Promise<any[]> => {
+  try {
+    const response = await fetch(
+      "https://predium-big-village-back-end.vercel.app/apartments"
+    );
+    const data = await response.json();
+    console.log(data);
+    return data;
+  } catch (err) {
+    console.error("Alguma coisa deu merda parceiro", err);
+    return [];
+  }
+};
 export function Unidades() {
+  const [bdData, setBdData] = useState<any[]>([]);
+
+  useEffect(() => {
+    fetchData().then((data) => {
+      setBdData(data);
+    });
+  }, []);
+
   return (
     <div className="flex flex-col items-start w-3/4 rounded-lg shadow-md overflow-auto h-5/6">
       <div className="flex h-14 justify-center items-center py-1 self-stretch bg-zinc-100">
@@ -56,13 +39,48 @@ export function Unidades() {
           <h1 className="font-bold text-black">Status</h1>
         </div>
       </div>
-      {bdDataSimulation.map((ap) => (
-        <div key={ap.ap} className="flex items-center self-stretch border-b-2 border-black/20" onClick={()=>console.log("Clicaram aqui!")}>
+      {bdData.map((ap) => (
+        <div
+          key={ap.id}
+          className="flex items-center self-stretch border-b-2 border-black/20"
+          onClick={() => console.log("Clicaram aqui!")}
+        >
           <div className="flex p-2 items-center flex-1">
-            <h1 className="">{ap.ap}</h1>
+            <h1 className="">AP - 00{ap.number}</h1>
           </div>
-          <div className="flex p-2 items-center justify-center flex-1">
-            <h1 className={ap.classe}>{ap.status}</h1>
+          <div className="flex p-2 items-center justify-center gap-1 flex-1">
+            {ap.status.length == 2 ? (
+              <>
+                <h1
+                  className={
+                    ap.status == "Ocupado"
+                      ? "badge badge-ghost"
+                      : "badge badge-accent"
+                  }
+                >
+                  {ap.status[0] == 'Locacao'  ? 'Locação' : ap.status[0]}
+                </h1>
+                <h1
+                  className={
+                    ap.status == "Ocupado"
+                      ? "badge badge-ghost"
+                      : "badge badge-accent"
+                  }
+                >
+                  {ap.status[1] == 'Locacao' ? 'Locação' : ap.status[1]}
+                </h1>
+              </>
+            ) : (
+              <h1
+                className={
+                  ap.status == "Ocupado"
+                    ? "badge badge-ghost"
+                    : "badge badge-accent"
+                }
+              >
+                {ap.status == 'Locacao' ? 'Locação' : ap.status}
+              </h1>
+            )}
           </div>
         </div>
       ))}

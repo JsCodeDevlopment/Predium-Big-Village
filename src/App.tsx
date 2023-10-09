@@ -1,12 +1,15 @@
-import { Header } from "./components/Header";
+import { ViewComponent } from "./components/ViewComponent";
 import { ViewContainer } from "./components/ViewContainer";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
   return (
-    <main className="flex h-screen w-full flex-col items-center gap-4 bg-neutral-400">
-      <Header />
-      <ViewContainer />
-    </main>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<ViewContainer />} />
+        <Route path="/home" element={<ViewComponent />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
