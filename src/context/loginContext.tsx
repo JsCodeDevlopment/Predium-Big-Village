@@ -1,4 +1,5 @@
 import { createContext, useState, useContext, ReactNode } from "react";
+import { useNavigate } from "react-router-dom";
 
 
 interface LoginContextProps {
@@ -10,7 +11,7 @@ export const LoginContext = createContext<LoginContextProps>({} as LoginContextP
 
 export const LoginProvider = ({ children }:{children: ReactNode}) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-
+  const navigate = useNavigate()
   const login = async (email: string, password: string): Promise<void> => {
     try {
       const response = await fetch(
@@ -24,8 +25,8 @@ export const LoginProvider = ({ children }:{children: ReactNode}) => {
         }
       );
       const data = await response.json();
-      console.log(data);
       setIsAuthenticated(true);
+      navigate('/', {replace: true})
       return data;
     } catch (error) {
       console.error("Erro ao fazer login:", error);

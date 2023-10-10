@@ -9,8 +9,48 @@ import { ReclamacoesInfo } from "./ReclamacoesInfo";
 import { AvisosModal } from "./AvisosModal";
 import { ReclamacoesModal } from "./ReclamacoesModal";
 import { MultasModal } from "./MultasModal";
+import { useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+
+interface Apartment {
+	id: string,
+	number: number,
+	block: string,
+	status: string[],
+	ownerId: string | null,
+	warnings: any[],
+	residents: any[],
+	vehicles: any[]
+}
+
+const fetchData = async (id: string): Promise<Apartment | null> => {
+  try {
+    const response = await fetch(
+      `https://predium-big-village-back-end.vercel.app/apartments/${id}`
+    );
+    const data = await response.json();
+    return data;
+  } catch (err) {
+    console.error("Alguma coisa deu merda parceiro", err);
+    return null
+  }
+};
 
 export function UnidadesInfo() {
+  const { id } = useParams();
+  const [data, setData] = useState<Apartment | null>();
+  useEffect(() => {
+    if (id) {
+      fetchData(id).then((data) => {
+        setData(data);
+      });
+    }
+  }, [id]);
+
+  if (!data) {
+    return null;
+  }
+
   return (
     <>
       {/* <AvisosModal /> */}
@@ -18,7 +58,7 @@ export function UnidadesInfo() {
       {/* <MultasModal/> */}
       <div className="flex flex-col items-start w-3/4 rounded-lg px-2 pb-2 shadow-md overflow-auto h-5/6">
         <div className="flex h-14 justify-center items-center py-1 self-stretch bg-zinc-100">
-          <h1 className="font-bold text-black">AP - 001</h1>
+          <h1 className="font-bold text-black">AP - {data.number}</h1>
         </div>
         <div className="flex items-center justify-center gap-2 self-stretch border-b-2 border-black/20">
           <img src={House} width={16} height={16} alt="" />{" "}

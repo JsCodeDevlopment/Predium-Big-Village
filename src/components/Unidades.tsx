@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 
 const fetchData = async (): Promise<any[]> => {
   try {
@@ -13,8 +15,14 @@ const fetchData = async (): Promise<any[]> => {
     return [];
   }
 };
+
 export function Unidades() {
+  const navigate = useNavigate()
   const [bdData, setBdData] = useState<any[]>([]);
+
+  const handleClick = (id:string) => {
+    navigate(`/unidades/${id}`, {replace: false})
+  }
 
   useEffect(() => {
     fetchData().then((data) => {
@@ -43,7 +51,7 @@ export function Unidades() {
         <div
           key={ap.id}
           className="flex items-center self-stretch border-b-2 border-black/20"
-          onClick={() => console.log("Clicaram aqui!")}
+          onClick={() => handleClick(ap.id)}
         >
           <div className="flex p-2 items-center flex-1">
             <h1 className="">AP - 00{ap.number}</h1>

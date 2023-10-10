@@ -1,18 +1,29 @@
-import { ViewComponent } from "./components/ViewComponent";
-import { ViewContainer } from "./components/ViewContainer";
+import { DashboardContainer } from "./components/DashboardContainer";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { LoginProvider } from "./context/loginContext";
+import { UnidadesInfo } from "./components/UnidadesInfo";
+import { Header } from "./components/Header";
+import { Unidades } from "./components/Unidades";
+import { LoginPage } from "./components/LoginPage";
 
 function App() {
   return (
-    <LoginProvider>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<ViewContainer />} />
-          <Route path="/home" element={<ViewComponent />} />
-        </Routes>
-      </BrowserRouter>
-    </LoginProvider>
+    <BrowserRouter>
+      <LoginProvider>
+        <main className="flex h-screen w-full flex-col items-center gap-4 bg-neutral-400">
+          <Header />
+          <div className="flex bg-white/80 shadow-md rounded-md w-11/12 px-5 h-5/6 items-center justify-center">
+            <Routes>
+              <Route path="/login" element={<LoginPage />} />
+              <Route path="/" element={<DashboardContainer />}>
+                <Route index element={<Unidades />} />
+                <Route path="unidades/:id" element={<UnidadesInfo />} />
+              </Route>
+            </Routes>
+          </div>
+        </main>
+      </LoginProvider>
+    </BrowserRouter>
   );
 }
 
