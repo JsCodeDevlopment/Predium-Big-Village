@@ -4,7 +4,6 @@ import { createContext, useState, useContext, ReactNode } from "react";
 interface LoginContextProps {
   isAuthenticated: boolean;
   login: (email: string, password: string) => Promise<void>;
-  logout: () => void;
   setIsAuthenticated: React.Dispatch<React.SetStateAction<boolean>>
 }
 export const LoginContext = createContext<LoginContextProps>({} as LoginContextProps);
@@ -34,14 +33,8 @@ export const LoginProvider = ({ children }:{children: ReactNode}) => {
     }
   };
 
-    const logout = (): void => {
-      setIsAuthenticated(false);
-    };
-
-  // const value = { isAuthenticated, login, logout, setIsAuthenticated };
-
   return ( 
-    <LoginContext.Provider value={{ isAuthenticated, login, logout, setIsAuthenticated }}>
+    <LoginContext.Provider value={{ isAuthenticated, login, setIsAuthenticated }}>
       {children}
     </LoginContext.Provider>
   )
