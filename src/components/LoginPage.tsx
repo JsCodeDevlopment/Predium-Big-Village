@@ -1,25 +1,15 @@
 import { FormEvent, useState } from "react";
+import { useLogin } from '../context/loginContext'
 
 export function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const { login } = useLogin()
 
   const handleSubmit = async (ev: FormEvent) => {
     ev.preventDefault();
     try {
-      const response = await fetch(
-        "https://predium-big-village-back-end.vercel.app/login",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ email, password }),
-        }
-      );
-      const data = await response.json();
-      console.log(data);
-      return data;
+      await login(email, password)
     } catch (err) {
       alert("Email ou senha");
       console.error("Alguma coisa deu merda parceiro", err);
