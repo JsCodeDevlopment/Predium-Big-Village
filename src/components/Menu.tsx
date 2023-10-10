@@ -5,6 +5,7 @@ import Car from '../assets/images/car.png'
 import Pet from '../assets/images/pet.png'
 import Visitor from '../assets/images/visitor.png'
 import Avisos from '../assets/images/avisos.png'
+import { useLogin } from '../context/loginContext'
 
 const links = [
   {
@@ -39,18 +40,22 @@ const links = [
   },
   {
     text: "Log out",
-    href: "#exit",
+    href: "/",
     image: LogOut
   },
 ];
 
+
+
 export function MenuOptions() {
+  const { isAuthenticated, setIsAuthenticated } = useLogin()
   return (
     <div className="inline-flex flex-col items-center absolute bg-white rounded-sm shadow-md top-[4.3rem] right-2">
       <ul className="flex p-2 flex-col items-start w-48 h-96 menu">
         <li className="flex gap-2 py-1 px-2 w-full  text-black font-bold border-b border-black/20">Opções</li>
         {links.map((link) => (
-          <li key={link.text} className="flex gap-2 py-1 px-2 w-full text-zinc-600">
+          <li key={link.text} className="flex gap-2 py-1 px-2 w-full text-zinc-600"
+          onClick={() => setIsAuthenticated(!isAuthenticated)}>
             <a href={link.href}><img src={link.image} height={18} width={18} alt=""/>{link.text}</a>
           </li>
         ))}

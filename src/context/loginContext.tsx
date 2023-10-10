@@ -5,10 +5,11 @@ interface LoginContextProps {
   isAuthenticated: boolean;
   login: (email: string, password: string) => Promise<void>;
   logout: () => void;
+  setIsAuthenticated: React.Dispatch<React.SetStateAction<boolean>>
 }
 export const LoginContext = createContext<LoginContextProps>({} as LoginContextProps);
 
-const LoginProvider = ({ children }:{children: ReactNode}) => {
+export const LoginProvider = ({ children }:{children: ReactNode}) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   const login = async (email: string, password: string): Promise<void> => {
@@ -34,23 +35,20 @@ const LoginProvider = ({ children }:{children: ReactNode}) => {
   };
 
     const logout = (): void => {
-      // Implemente a lógica de logout (se necessário)
       setIsAuthenticated(false);
     };
 
-  const value = { isAuthenticated, login, logout };
+  // const value = { isAuthenticated, login, logout, setIsAuthenticated };
 
   return ( 
-    <LoginContext.Provider value={value}>
+    <LoginContext.Provider value={{ isAuthenticated, login, logout, setIsAuthenticated }}>
       {children}
     </LoginContext.Provider>
   )
 }
 
-const useLogin = () => {
+export const useLogin = () => {
   const context = useContext(LoginContext);
 
   return context;
 };
-
-export { LoginProvider, useLogin };
