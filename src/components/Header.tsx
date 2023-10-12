@@ -4,6 +4,7 @@ import CloseMenu from "../assets/images/close-menu.png";
 import { useState } from "react";
 import { MenuOptions } from "./Menu";
 import { useLogin } from "../context/loginContext";
+import { Link } from "react-router-dom";
 
 export function Header() {
   const [menuVisible, setMenuVisible] = useState(false);
@@ -16,9 +17,10 @@ export function Header() {
       return true
     }
   }
+
   return (
     <div className="flex w-full h-16 justify-between items-center shadow-md py-4 px-8 relative bg-white">
-      <img src={Logo} width={150} height={165} alt="" />
+      <Link to="/"><img className="cursor-pointer" src={Logo} width={150} height={165} alt=""/></Link>
       <button disabled={verification()}>
       <img
         src={menuVisible ? CloseMenu : Menu}

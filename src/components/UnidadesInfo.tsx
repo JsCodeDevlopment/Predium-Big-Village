@@ -13,14 +13,14 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 interface Apartment {
-	id: string,
-	number: number,
-	block: string,
-	status: string[],
-	ownerId: string | null,
-	warnings: any[],
-	residents: any[],
-	vehicles: any[]
+  id: string;
+  number: number;
+  block: string;
+  status: string[];
+  ownerId: string | null;
+  warnings: any[];
+  residents: any[];
+  vehicles: any[];
 }
 
 const fetchData = async (id: string): Promise<Apartment | null> => {
@@ -29,10 +29,12 @@ const fetchData = async (id: string): Promise<Apartment | null> => {
       `https://predium-big-village-back-end.vercel.app/apartments/${id}`
     );
     const data = await response.json();
+    const residents = await data.residents;
+    console.log(residents);
     return data;
   } catch (err) {
     console.error("Alguma coisa deu merda parceiro", err);
-    return null
+    return null;
   }
 };
 
@@ -107,7 +109,7 @@ export function UnidadesInfo() {
         </div>
         <div className="flex gap-4 justify-between px-5 items-start flex-wrap">
           <OwnerInfo />
-          <MoradoresInfo />
+          <MoradoresInfo info={data.residents[0].person.name} />
           <Veiculos />
           <PetInfo />
           <AvisosInfo />

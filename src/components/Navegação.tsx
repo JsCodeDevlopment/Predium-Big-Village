@@ -16,7 +16,7 @@ export function Navigation() {
           src={Esquerda}
           alt="esquerda"
         />
-        <h1 className="text-xs text-black">voltar</h1>
+        <h1 className="text-xs text-black">Voltar</h1>
       </button>
     </>
   );
