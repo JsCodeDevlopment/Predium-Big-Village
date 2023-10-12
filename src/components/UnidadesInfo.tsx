@@ -58,7 +58,7 @@ export function UnidadesInfo() {
       {/* <MultasModal/> */}
       <div className="flex flex-col items-start w-3/4 rounded-lg px-2 pb-2 shadow-md overflow-auto h-5/6">
         <div className="flex h-14 justify-center items-center py-1 self-stretch bg-zinc-100">
-          <h1 className="font-bold text-black">AP - {data.number}</h1>
+          <h1 className="font-bold text-black">AP - 00{data.number}</h1>
         </div>
         <div className="flex items-center justify-center gap-2 self-stretch border-b-2 border-black/20">
           <img src={House} width={16} height={16} alt="" />{" "}
@@ -68,15 +68,15 @@ export function UnidadesInfo() {
           <div className="flex p-2 flex-col flex-wrap justify-center items-start">
             <ul className="flex flex-col w-56 flex-wrap">
               <li className="font-bold text-black">Opções</li>
-              <li>
+              <li className="text-black/60">
                 Unidade à venda?{" "}
                 <input type="checkbox" className="toggle toggle-success" />
               </li>
-              <li>
+              <li className="text-black/60">
                 Unidade à locação?{" "}
                 <input type="checkbox" className="toggle toggle-success" />
               </li>
-              <li>
+              <li className="text-black/60">
                 Pet Friendly?{" "}
                 <input type="checkbox" className="toggle toggle-success" />
               </li>

@@ -5,12 +5,14 @@ import { UnidadesInfo } from "./components/UnidadesInfo";
 import { Header } from "./components/Header";
 import { Unidades } from "./components/Unidades";
 import { LoginPage } from "./components/LoginPage";
+import { Navigation } from "./components/Navegação";
 
 function App() {
   return (
     <BrowserRouter>
       <LoginProvider>
-        <main className="flex h-screen w-full flex-col items-center gap-4 bg-neutral-400">
+        <main className="flex h-screen w-full flex-col items-center gap-4 relative bg-neutral-400">
+          <Navigation/>
           <Header />
           <div className="flex bg-white/80 shadow-md rounded-md w-11/12 px-5 h-5/6 items-center justify-center">
             <Routes>

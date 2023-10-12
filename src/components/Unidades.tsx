@@ -8,7 +8,6 @@ const fetchData = async (): Promise<any[]> => {
       "https://predium-big-village-back-end.vercel.app/apartments"
     );
     const data = await response.json();
-    console.log(data);
     return data;
   } catch (err) {
     console.error("Alguma coisa deu merda parceiro", err);
@@ -50,11 +49,11 @@ export function Unidades() {
       {bdData.map((ap) => (
         <div
           key={ap.id}
-          className="flex items-center self-stretch border-b-2 border-black/20"
+          className="flex items-center self-stretch border-b-2 cursor-pointer hover:bg-black/10 border-black/20"
           onClick={() => handleClick(ap.id)}
         >
           <div className="flex p-2 items-center flex-1">
-            <h1 className="">AP - 00{ap.number}</h1>
+            <h1 className="text-black/60 font-semibold">AP - 00{ap.number}</h1>
           </div>
           <div className="flex p-2 items-center justify-center gap-1 flex-1">
             {ap.status.length == 2 ? (
