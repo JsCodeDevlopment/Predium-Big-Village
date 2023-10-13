@@ -11,26 +11,15 @@ import { ReclamacoesModal } from "./ReclamacoesModal";
 import { MultasModal } from "./MultasModal";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { IApartment } from "../Interfaces/IApartment";
 
-interface Apartment {
-  id: string;
-  number: number;
-  block: string;
-  status: string[];
-  ownerId: string | null;
-  warnings: any[];
-  residents: any[];
-  vehicles: any[];
-}
-
-const fetchData = async (id: string): Promise<Apartment | null> => {
+const fetchData = async (id: string): Promise<IApartment | null> => {
   try {
     const response = await fetch(
       `https://predium-big-village-back-end.vercel.app/apartments/${id}`
     );
     const data = await response.json();
-    const residents = await data.residents;
-    console.log(residents);
+    console.log(data);
     return data;
   } catch (err) {
     console.error("Alguma coisa deu merda parceiro", err);
@@ -40,7 +29,7 @@ const fetchData = async (id: string): Promise<Apartment | null> => {
 
 export function UnidadesInfo() {
   const { id } = useParams();
-  const [data, setData] = useState<Apartment | null>();
+  const [data, setData] = useState<IApartment | null>();
   useEffect(() => {
     if (id) {
       fetchData(id).then((data) => {
@@ -109,7 +98,7 @@ export function UnidadesInfo() {
         </div>
         <div className="flex gap-4 justify-between px-5 items-start flex-wrap">
           <OwnerInfo />
-          <MoradoresInfo info={data.residents[0].person.name} />
+          <MoradoresInfo residents={data.residents} />
           <Veiculos />
           <PetInfo />
           <AvisosInfo />
