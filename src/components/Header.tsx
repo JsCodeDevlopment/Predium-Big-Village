@@ -30,7 +30,7 @@ export function Header() {
         onClick={() => setMenuVisible(!menuVisible)}
       />
       </button>
-      {menuVisible ? <MenuOptions /> : <></>}
+      {menuVisible ? <MenuOptions setMenuVisible={setMenuVisible} /> : <></>}
     </div>
   );
 }

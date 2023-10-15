@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-
 const fetchData = async (): Promise<any[]> => {
   try {
     const response = await fetch(
@@ -16,12 +15,12 @@ const fetchData = async (): Promise<any[]> => {
 };
 
 export function Unidades() {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const [bdData, setBdData] = useState<any[]>([]);
 
-  const handleClick = (id:string) => {
-    navigate(`/unidades/${id}`, {replace: false})
-  }
+  const handleClick = (id: string) => {
+    navigate(`/unidades/${id}`, { replace: false });
+  };
 
   useEffect(() => {
     fetchData().then((data) => {
@@ -34,7 +33,7 @@ export function Unidades() {
       <div className="flex h-14 justify-center items-center py-1 self-stretch bg-zinc-100">
         <input
           type="text"
-          placeholder="Search Member"
+          placeholder="Search Apartment"
           className="input input-ghost w-full max-w-xs h-8"
         />
       </div>
@@ -65,7 +64,7 @@ export function Unidades() {
                       : "badge badge-accent"
                   }
                 >
-                  {ap.status[0] == 'Locacao'  ? 'Locação' : ap.status[0]}
+                  {ap.status[0] == "Locacao" ? "Locação" : ap.status[0]}
                 </h1>
                 <h1
                   className={
@@ -74,7 +73,7 @@ export function Unidades() {
                       : "badge badge-accent"
                   }
                 >
-                  {ap.status[1] == 'Locacao' ? 'Locação' : ap.status[1]}
+                  {ap.status[1] == "Locacao" ? "Locação" : ap.status[1]}
                 </h1>
               </>
             ) : (
@@ -85,7 +84,7 @@ export function Unidades() {
                     : "badge badge-accent"
                 }
               >
-                {ap.status == 'Locacao' ? 'Locação' : ap.status}
+                {ap.status == "Locacao" ? "Locação" : ap.status}
               </h1>
             )}
           </div>

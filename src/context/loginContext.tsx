@@ -6,6 +6,7 @@ interface LoginContextProps {
   isAuthenticated: boolean;
   login: (email: string, password: string) => Promise<void>;
   setIsAuthenticated: React.Dispatch<React.SetStateAction<boolean>>
+  logout: ()=>void
 }
 export const LoginContext = createContext<LoginContextProps>({} as LoginContextProps);
 
@@ -34,8 +35,13 @@ export const LoginProvider = ({ children }:{children: ReactNode}) => {
     }
   };
 
+  const logout = () =>{
+    setIsAuthenticated(false)
+    navigate('/login', {replace: true})
+  }
+
   return ( 
-    <LoginContext.Provider value={{ isAuthenticated, login, setIsAuthenticated }}>
+    <LoginContext.Provider value={{ isAuthenticated, login, setIsAuthenticated, logout }}>
       {children}
     </LoginContext.Provider>
   )
