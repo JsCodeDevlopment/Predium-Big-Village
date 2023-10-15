@@ -11,7 +11,7 @@ export function LoginPage() {
     try {
       await login(email, password)
     } catch (err) {
-      alert("Email ou senha");
+      alert(`${err}. Email ou senha inválidos!`);
       console.error("Alguma coisa deu merda parceiro", err);
       return [];
     }
