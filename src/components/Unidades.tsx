@@ -40,7 +40,7 @@ export function Unidades() {
           onClick={() => handleClick(ap.id)}
         >
           <div className="flex p-2 items-center flex-1">
-            <h1 className="text-black/60 font-semibold">AP - 00{ap.number}</h1>
+            <h1 className="text-black/60 font-semibold">AP - {ap.number.toString().length <= 1 ? `00` : `0`}{ap.number}</h1>
           </div>
           <div className="flex p-2 items-center justify-center gap-1 flex-1">
             {ap.status.length == 2 ? (
