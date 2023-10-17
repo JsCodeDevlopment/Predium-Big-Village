@@ -9,26 +9,14 @@ import { ReclamacoesInfo } from "./ReclamacoesInfo";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { IApartment } from "../Interfaces/IApartment";
-
-const fetchData = async (id: string): Promise<IApartment | null> => {
-  try {
-    const response = await fetch(
-      `https://predium-big-village-back-end.vercel.app/apartments/${id}`
-    );
-    const data = await response.json();
-    return data;
-  } catch (err) {
-    console.error("Alguma coisa deu merda parceiro", err);
-    return null;
-  }
-};
+import { Apartment } from '../servises/api/Apartment'
 
 export function UnidadesInfo() {
   const { id } = useParams();
   const [data, setData] = useState<IApartment | null>();
   useEffect(() => {
     if (id) {
-      fetchData(id).then((data) => {
+      Apartment.getById(id).then((data) => {
         setData(data);
       });
     }

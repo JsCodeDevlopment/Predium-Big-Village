@@ -13,7 +13,7 @@ export function AvisosModal() {
     <div className="flex items-center justify-center absolute w-full h-full bg-black/50 z-50 top-0">
       <div className="absolute top-[-0.95rem] left-[45rem]">
         <button
-          className="absolute top-24 left-20 w-20 h-5 gap-1 bg-black/20 hover:bg-black/40 rounded-full flex items-center justify-center disabled:btn-disabled disabled:opacity-40 disabled:cursor-not-allowed"
+          className="absolute top-24 left-20 w-20 h-5 gap-1 bg-white/80 hover:bg-white/50 rounded-full flex items-center justify-center disabled:btn-disabled disabled:opacity-40 disabled:cursor-not-allowed"
           onClick={handleBack}
           disabled={!canGoBack}
         >
@@ -31,6 +31,14 @@ export function AvisosModal() {
           <img src={Avisos} width={16} height={16} alt="" />
         </div>
         <div className="flex gap-1 justify-center items-center w-full pb-1 px-5 flex-col flex-wrap border-b-2 ">
+        <label className="label">
+            <span className="label-text text-black/70">Apartamento: </span>
+          </label>
+          <input
+            placeholder="Ex: 1"
+            className="input input-ghost input-sm w-full max-w-xs"
+            required
+          />
           <label className="label">
             <span className="label-text text-black/70">Titulo: </span>
           </label>

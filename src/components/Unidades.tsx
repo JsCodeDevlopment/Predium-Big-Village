@@ -1,18 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-
-const fetchData = async (): Promise<any[]> => {
-  try {
-    const response = await fetch(
-      "https://predium-big-village-back-end.vercel.app/apartments"
-    );
-    const data = await response.json();
-    return data;
-  } catch (err) {
-    console.error("Alguma coisa deu merda parceiro", err);
-    return [];
-  }
-};
+import { Apartment } from '../servises/api/Apartment'
 
 export function Unidades() {
   const navigate = useNavigate();
@@ -23,7 +11,7 @@ export function Unidades() {
   };
 
   useEffect(() => {
-    fetchData().then((data) => {
+    Apartment.getAll().then((data) => {
       setBdData(data);
     });
   }, []);
