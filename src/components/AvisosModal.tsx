@@ -1,14 +1,33 @@
 import Avisos from "../assets/images/mensagem.png";
 import Close from "../assets/images/esquerda.png";
 import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Warnings } from "../servises/api/Warnings";
+import { IWarning } from "../Interfaces/IWarning";
 
 export function AvisosModal() {
   const navigate = useNavigate();
+  const [warnings, setWarnings] = useState<any[]>([]);
 
   const handleBack = () => {
     navigate(-1); // Navegar para trás na pilha de histórico
   };
   const canGoBack = location.pathname !== "/";
+
+  useEffect(() => {
+    const fetchWarnings = async () => {
+      try {
+        const warningsInstance = Warnings;
+        const response = await warningsInstance.showAll();
+        setWarnings(response);
+      } catch (error) {
+        console.error("Erro ao buscar os avisos:", error);
+      }
+    };
+
+    fetchWarnings();
+  }, []);
+
   return (
     <div className="flex items-center justify-center absolute w-full h-full bg-black/50 z-50 top-0">
       <div className="absolute top-[-0.95rem] left-[45rem]">
@@ -31,7 +50,7 @@ export function AvisosModal() {
           <img src={Avisos} width={16} height={16} alt="" />
         </div>
         <div className="flex gap-1 justify-center items-center w-full pb-1 px-5 flex-col flex-wrap border-b-2 ">
-        <label className="label">
+          <label className="label">
             <span className="label-text text-black/70">Apartamento: </span>
           </label>
           <input
@@ -58,23 +77,14 @@ export function AvisosModal() {
           />
           <button className="btn w-40 h-5 btn-accent">Adicionar</button>
         </div>
-        <div className="flex p-2 justify-between w-full items-center gap-2 flex-1 border-b-2">
-          <p>Reunião de inquilinos</p>
-          <div className="flex h-auto w-30 break-all">
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem,
-              unde modi, magnam quam rem qui aliquam vitae corrupti quia
-              consequuntur necessitatibus. Assumenda omnis officiis iste totam
-              nihil nemo ratione enim?
-            </p>
+        {warnings.map((warning: IWarning) => (
+          <div key={warning.id} className="flex p-2 justify-between w-full items-center gap-2 flex-1 border-b-2">
+            <p>{warning.title}</p>
+            <div className="flex h-auto w-30 break-all">
+              <p>{warning.details}</p>
+            </div>
           </div>
-        </div>
-        <div className="flex p-2 justify-between w-full items-center gap-2 flex-1 border-b-2">
-          <p>Mudanças nas regras</p>
-          <div className="flex h-auto w-30 break-all">
-            <p>Lorem ipsum dolor sit amet...</p>
-          </div>
-        </div>
+        ))}
       </div>
     </div>
   );
