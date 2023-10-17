@@ -7,7 +7,7 @@ import { IWarning } from "../Interfaces/IWarning";
 
 export function AvisosModal() {
   const navigate = useNavigate();
-  const [warnings, setWarnings] = useState<any[]>([]);
+  const [warnings, setWarnings] = useState<IWarning[]>([]);
 
   const handleBack = () => {
     navigate(-1); // Navegar para trás na pilha de histórico
@@ -77,7 +77,7 @@ export function AvisosModal() {
           />
           <button className="btn w-40 h-5 btn-accent">Adicionar</button>
         </div>
-        {warnings.map((warning: IWarning) => (
+        {warnings.map((warning) => (
           <div key={warning.id} className="flex p-2 justify-between w-full items-center gap-2 flex-1 border-b-2">
             <p>{warning.title}</p>
             <div className="flex h-auto w-30 break-all">
