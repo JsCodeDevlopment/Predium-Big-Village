@@ -5,3 +5,9 @@ export interface IWarning {
   date: Date
   apartmentId: string
 }
+
+export interface INewWarning {
+  apartmentNumber: string
+  title: string
+  description: string
+}

@@ -82,7 +82,7 @@ export function UnidadesInfo() {
           <MoradoresInfo residents={data.residents} />
           <Veiculos />
           <PetInfo />
-          <AvisosInfo />
+          <AvisosInfo warning={data.warnings}/>
           <MultasInfo />
           <ReclamacoesInfo />
         </div>

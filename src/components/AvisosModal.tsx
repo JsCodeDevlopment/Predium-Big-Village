@@ -3,11 +3,17 @@ import Close from "../assets/images/esquerda.png";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { Warnings } from "../servises/api/Warnings";
-import { IWarning } from "../Interfaces/IWarning";
+import { INewWarning, IWarning } from "../Interfaces/IWarning";
+import { baseUrl } from "../servises/baseUrl";
 
 export function AvisosModal() {
   const navigate = useNavigate();
   const [warnings, setWarnings] = useState<IWarning[]>([]);
+  const [newAviso, setNewAviso] = useState<INewWarning>({
+    apartmentNumber: "",
+    title: "",
+    description: "",
+  });
 
   const handleBack = () => {
     navigate(-1); // Navegar para trás na pilha de histórico
@@ -27,6 +33,56 @@ export function AvisosModal() {
 
     fetchWarnings();
   }, []);
+
+  const handleInputChange = (
+    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const { name, value } = event.target;
+    setNewAviso((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
+  };
+
+  const handleAddAviso = async () => {
+    try {
+      const { apartmentNumber, title, description } = newAviso;
+
+      if (!apartmentNumber || !title || !description) {
+        console.error("Por favor, preencha todos os campos.");
+        alert("Por favor, preencha todos os campos.")
+        return;
+      }
+
+      const response = await fetch(`${baseUrl}/warning/${apartmentNumber}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          title,
+          details: description,
+        }),
+      });
+
+      if (!response.ok) {
+        console.error("Erro ao criar o aviso:", response.statusText);
+        return;
+      }
+
+      const newWarning = await response.json();
+      setWarnings([...warnings, newWarning]);
+
+      setNewAviso({
+        apartmentNumber: "",
+        title: "",
+        description: "",
+      });
+    } catch (error) {
+      console.error("Erro ao criar o aviso:", error);
+
+    }
+  };
 
   return (
     <div className="flex items-center justify-center absolute w-full h-full bg-black/50 z-50 top-0">
@@ -57,6 +113,9 @@ export function AvisosModal() {
             placeholder="Ex: 1"
             className="input input-ghost input-sm w-full max-w-xs"
             required
+            name="apartmentNumber"
+            value={newAviso.apartmentNumber}
+            onChange={handleInputChange}
           />
           <label className="label">
             <span className="label-text text-black/70">Titulo: </span>
@@ -66,6 +125,9 @@ export function AvisosModal() {
             placeholder="Titulo aqui..."
             className="input input-ghost w-full"
             required
+            name="title"
+            value={newAviso.title}
+            onChange={handleInputChange}
           />
           <label className="label">
             <span className="label-text text-black/70">Descrição: </span>
@@ -74,11 +136,19 @@ export function AvisosModal() {
             placeholder="Descreva aqui..."
             className="textarea textarea-ghost textarea-sm w-full max-w-xs"
             required
+            name="description"
+            value={newAviso.description}
+            onChange={handleInputChange}
           />
-          <button className="btn w-40 h-5 btn-accent">Adicionar</button>
+          <button className="btn w-40 h-5 btn-accent" onClick={handleAddAviso}>
+            Adicionar
+          </button>
         </div>
         {warnings.map((warning) => (
-          <div key={warning.id} className="flex p-2 justify-between w-full items-center gap-2 flex-1 border-b-2">
+          <div
+            key={warning.id}
+            className="flex p-2 justify-between w-full items-center gap-2 flex-1 border-b-2"
+          >
             <p>{warning.title}</p>
             <div className="flex h-auto w-30 break-all">
               <p>{warning.details}</p>
