@@ -9,6 +9,7 @@ import { Navigation } from "./components/Navegação";
 import { AvisosModal } from "./components/AvisosModal";
 import { MultasModal } from "./components/MultasModal";
 import { ReclamacoesModal } from "./components/ReclamacoesModal";
+import { VehicleModal } from "./components/VehicleModal";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
               <Route path="/" element={<DashboardContainer />}>
                 <Route index element={<Unidades />} />
                 <Route path="/aviso-modal" element={<AvisosModal />} />
+                <Route path="/vehicle-modal" element={<VehicleModal />} />
                 <Route path="/reclamacoes-modal" element={<ReclamacoesModal />} />
                 <Route path="/multas-modal" element={<MultasModal />} />
                 <Route path="unidades/:id" element={<UnidadesInfo />} />

@@ -10,7 +10,6 @@ export function AvisosInfo ({ warning }: IWarningsInfProps){
   const navigate = useNavigate()
 
   function handleClick() {
-
     navigate('/aviso-modal', {replace: true})
   }
     return (
