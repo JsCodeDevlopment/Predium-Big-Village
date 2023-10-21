@@ -1,14 +1,8 @@
 import { createContext, useState, useContext, ReactNode } from "react";
 import { useNavigate } from "react-router-dom";
+import { ILoginContextProps } from "../Interfaces/IContext";
 
-
-interface LoginContextProps {
-  isAuthenticated: boolean;
-  login: (email: string, password: string) => Promise<void>;
-  setIsAuthenticated: React.Dispatch<React.SetStateAction<boolean>>
-  logout: ()=>void
-}
-export const LoginContext = createContext<LoginContextProps>({} as LoginContextProps);
+export const LoginContext = createContext<ILoginContextProps>({} as ILoginContextProps);
 
 export const LoginProvider = ({ children }:{children: ReactNode}) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);

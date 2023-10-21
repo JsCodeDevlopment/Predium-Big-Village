@@ -1,10 +1,6 @@
-import { IResident } from "../Interfaces/IResident";
+import { IMoradoresInfProps } from "../Interfaces/IResident";
 import AddUser from "../assets/images/adduser.png";
 import Trash from "../assets/images/trash.png";
-
-interface IMoradoresInfProps {
-  residents: IResident[];
-}
 
 export function MoradoresInfo({ residents }: IMoradoresInfProps) {
   return (
@@ -16,12 +12,21 @@ export function MoradoresInfo({ residents }: IMoradoresInfProps) {
         </div>
         <button className="btn-xs btn-accent">Adicionar</button>
       </div>
-      {residents.map((resident) => (
-        <div key={resident.id} className="flex p-2 justify-between gap-3 w-full items-center flex-1 border-b-2">
-          <p className="text-black">{resident.person.name}</p>
-          <img src={Trash} width={18} height={18} alt="" />
+      {residents.length === 0 ? (
+        <div className="flex p-1 border-b-2">
+          <h1 className="text-black/70">Nenhum morador por aqui 🙈</h1>
         </div>
-      ))}
+      ) : (
+        residents.map((resident) => (
+          <div
+            key={resident.id}
+            className="flex p-2 justify-between gap-3 w-full items-center flex-1 border-b-2"
+          >
+            <p className="text-black">{resident.person.name}</p>
+            <img src={Trash} width={18} height={18} alt="" />
+          </div>
+        ))
+      )}
     </div>
   );
 }

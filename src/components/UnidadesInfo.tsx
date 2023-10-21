@@ -10,7 +10,6 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { IApartment } from "../Interfaces/IApartment";
 import { Apartment } from '../servises/api/Apartment'
-import { VehicleModal } from "./VehicleModal";
 
 export function UnidadesInfo() {
   const { id } = useParams();
@@ -81,7 +80,7 @@ export function UnidadesInfo() {
         <div className="flex gap-4 justify-between px-5 items-start flex-wrap">
           <OwnerInfo />
           <MoradoresInfo residents={data.residents} />
-          <Veiculos />
+          <Veiculos vehicle={data.vehicles} />
           <PetInfo />
           <AvisosInfo warning={data.warnings}/>
           <MultasInfo />

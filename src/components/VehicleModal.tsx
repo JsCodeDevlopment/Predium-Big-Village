@@ -14,7 +14,7 @@ export function VehicleModal() {
 
   return (
     <div className="flex items-center justify-center absolute w-full h-full bg-black/50 z-50 top-0">
-      <div className="absolute top-[1.2rem] left-[44.8rem]">
+      <div className="absolute top-5 left-[44.8rem]">
         <button
           className="absolute top-24 left-20 w-20 h-5 gap-1 bg-white/80 hover:bg-white/50 rounded-full flex items-center justify-center disabled:btn-disabled disabled:opacity-40 disabled:cursor-not-allowed"
           onClick={handleBack}
