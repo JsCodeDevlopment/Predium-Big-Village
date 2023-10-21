@@ -1,4 +1,8 @@
-export interface IWarning {
+export interface IWarningsInfProps {
+  warning: IWarning[];
+}
+
+interface IWarning {
   id: string
   title: string
   details: string
