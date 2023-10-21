@@ -1,4 +1,3 @@
-import { CreateNewVeiculos } from "./CreateNewCar";
 import { CreateNewPet } from "./CreateNewPet";
 import { FormNewMorador } from "./FormNewMorador";
 
@@ -13,7 +12,6 @@ export function AddNewPerson() {
           <FormNewMorador />
         </div>
         <div className="flex flex-wrap gap-2 flex-col max-w-xs">
-          <CreateNewVeiculos />
           <CreateNewPet />
         </div>
         <div className="flex w-full justify-center">

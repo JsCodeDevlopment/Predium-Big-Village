@@ -4,7 +4,7 @@ export interface IMoradoresInfProps {
   residents: IResident[];
 }
 
-interface IResident {
+export interface IResident {
   Visitors: any[] | null;
   accessTag: string;
   apartmentId: string;

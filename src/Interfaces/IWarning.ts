@@ -2,7 +2,7 @@ export interface IWarningsInfProps {
   warning: IWarning[];
 }
 
-interface IWarning {
+export interface IWarning {
   id: string
   title: string
   details: string
