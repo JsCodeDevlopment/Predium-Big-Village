@@ -2,7 +2,6 @@ import { useNavigate } from "react-router-dom";
 import Car from "../assets/images/car.png";
 import Trash from "../assets/images/trash.png";
 import Close from "../assets/images/esquerda.png";
-import Plus from "../assets/images/plus.png";
 import { IVehicleState, IVehicles } from "../Interfaces/Vehicles";
 import { baseUrl } from "../servises/baseUrl";
 import { useEffect, useState } from "react";
@@ -20,17 +19,15 @@ export function VehicleModal() {
     apartmentNumber: ""
   });
 
+  const fetchVehicles = async () => {
+    try {
+      const response = await Vehicles.getAll();
+      setVehicles(response);
+    } catch (error) {
+      console.error("Erro ao buscar os veículos:", error);
+    }
+  };
   useEffect(() => {
-    const fetchVehicles = async () => {
-      try {
-        const vehicleInstance = Vehicles;
-        const response = await vehicleInstance.getAll();
-        setVehicles(response);
-      } catch (error) {
-        console.error("Erro ao buscar os veículos:", error);
-      }
-    };
-
     fetchVehicles();
   }, []);
 
@@ -94,15 +91,16 @@ export function VehicleModal() {
   };
   const canGoBack = location.pathname !== "/";
 
-  const handleDelete = (id: string) => {
-    Vehicles.delete(id)
+  const handleDelete = async (id: string) => {
+    await Vehicles.delete(id)
+    await fetchVehicles()
   }
 
       return (
         <div className="flex items-center justify-center absolute w-full h-full bg-black/50 z-50 top-0">
-          <div className="absolute top-5 left-[44.8rem]">
+          <div className="absolute top-16 left-[44.8rem]">
             <button
-              className="absolute top-24 left-20 w-20 h-5 gap-1 bg-white/80 hover:bg-white/50 rounded-full flex items-center justify-center disabled:btn-disabled disabled:opacity-40 disabled:cursor-not-allowed"
+              className="absolute top-0 left-20 w-20 h-5 gap-1 bg-white/80 hover:bg-white/50 rounded-full flex items-center justify-center disabled:btn-disabled disabled:opacity-40 disabled:cursor-not-allowed"
               onClick={handleBack}
               disabled={!canGoBack}
             >
@@ -121,12 +119,8 @@ export function VehicleModal() {
                 <img src={Car} width={18} height={18} alt="" />
               </div>
             </div>
-            <div className="flex p-2 gap-1 justify-between w-full items-center flex-1 border-b-2">
+            <div className="flex p-2 gap-1 justify-center w-full items-center flex-1 border-b-2">
               <h1 className="text-black">Adicionar Veículos</h1>
-              <button className="cursor-pointer w-24 h-5 gap-1 bg-black/20 hover:bg-black/50 rounded-full flex items-center justify-center disabled:btn-disabled disabled:opacity-40 disabled:cursor-not-allowed">
-                <img src={Plus} width={18} height={18} alt="" />
-                <h1 className="text-xs text-black/70">Adicionar</h1>
-              </button>
             </div>
             <div className="flex p-2 gap-1 justify-evenly flex-wrap w-96 items-center flex-1">
               <input

@@ -82,6 +82,7 @@ export function AvisosModal() {
       console.error("Erro ao criar o aviso:", error);
     }
   };
+  
   const handleDelete = async (id: string) => {
     await Warnings.delete(id)
     await fetchWarnings()

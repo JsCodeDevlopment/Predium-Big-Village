@@ -1,4 +1,3 @@
-import { IVehicles } from "../../Interfaces/Vehicles";
 import { baseUrl } from "../baseUrl";
 
 export class Vehicles {
@@ -12,7 +11,7 @@ export class Vehicles {
       return [];
     }
   };
-  static delete = async (id: string): Promise<IVehicles | null> => {
+  static delete = async (id: string): Promise<void> => {
     try {
       const response = await fetch(`${baseUrl}/vehicles/${id}`, {
         method: "DELETE"
@@ -21,7 +20,6 @@ export class Vehicles {
       return data;
     } catch (err) {
       console.error("Alguma coisa deu merda parceiro", err);
-      return null;
     }
   };
 }
