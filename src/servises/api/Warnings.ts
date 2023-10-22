@@ -24,4 +24,14 @@ export class Warnings {
       return [];
     }
   };
+  // Deleta um Aviso
+  static delete = async (id: string): Promise<void> => {
+    try {
+      await fetch(`${baseUrl}/warnings/${id}`, {
+        method: "DELETE"
+      });
+    } catch (err) {
+      console.error("Alguma coisa deu merda parceiro", err);
+    }
+  };
 }

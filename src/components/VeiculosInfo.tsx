@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import Car from "../assets/images/car.png";
 import { IVehiclesInfProps } from "../Interfaces/Vehicles";
 
-export function Veiculos({ vehicle }: IVehiclesInfProps) {
+export function VeiculosInfo({ vehicle }: IVehiclesInfProps) {
   const navigate = useNavigate();
 
   function handleClick() {
@@ -32,7 +32,7 @@ export function Veiculos({ vehicle }: IVehiclesInfProps) {
           >
             <div className="p-1 bg-black/20 rounded-md w-20">
               <p className="text-black">
-                Tipo: <span className="text-black">{vehicle.type}</span>
+                Tipo: <span className="text-black">{vehicle.type === "Car" ? "Carro" : "Moto"}</span>
               </p>
             </div>
             <div className="p-1 bg-black/5 rounded-md w-20">

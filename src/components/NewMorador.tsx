@@ -1,4 +1,4 @@
-import { CreateNewPet } from "./CreateNewPet";
+import { PetsModal } from "./PetsModal";
 import { FormNewMorador } from "./FormNewMorador";
 
 export function AddNewPerson() {
@@ -12,7 +12,7 @@ export function AddNewPerson() {
           <FormNewMorador />
         </div>
         <div className="flex flex-wrap gap-2 flex-col max-w-xs">
-          <CreateNewPet />
+          <PetsModal />
         </div>
         <div className="flex w-full justify-center">
           <button className="btn btn-neutral">Salvar</button>

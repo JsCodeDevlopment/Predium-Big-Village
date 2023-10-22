@@ -1,3 +1,4 @@
+import Trash from "../assets/images/trash.png";
 import Avisos from "../assets/images/mensagem.png";
 import Close from "../assets/images/esquerda.png";
 import { useNavigate } from "react-router-dom";
@@ -20,17 +21,16 @@ export function AvisosModal() {
   };
   const canGoBack = location.pathname !== "/";
 
-  useEffect(() => {
-    const fetchWarnings = async () => {
-      try {
-        const warningsInstance = Warnings;
-        const response = await warningsInstance.showAll();
-        setWarnings(response);
-      } catch (error) {
-        console.error("Erro ao buscar os avisos:", error);
-      }
-    };
+  const fetchWarnings = async () => {
+    try {
+      const response = await Warnings.showAll();
+      setWarnings(response);
+    } catch (error) {
+      console.error("Erro ao buscar os avisos:", error);
+    }
+  };
 
+  useEffect(() => {
     fetchWarnings();
   }, []);
 
@@ -50,7 +50,7 @@ export function AvisosModal() {
 
       if (!apartmentNumber || !title || !description) {
         console.error("Por favor, preencha todos os campos.");
-        alert("Por favor, preencha todos os campos.")
+        alert("Por favor, preencha todos os campos.");
         return;
       }
 
@@ -80,9 +80,12 @@ export function AvisosModal() {
       });
     } catch (error) {
       console.error("Erro ao criar o aviso:", error);
-
     }
   };
+  const handleDelete = async (id: string) => {
+    await Warnings.delete(id)
+    await fetchWarnings()
+  }
 
   return (
     <div className="flex items-center justify-center absolute w-full h-full bg-black/50 z-50 top-0">
@@ -153,6 +156,11 @@ export function AvisosModal() {
             <div className="flex h-auto w-30 break-all">
               <p>{warning.details}</p>
             </div>
+            <button className="w-10 h-10 gap-1 bg-black/10 hover:bg-black/30 cursor-pointer rounded-full flex items-center justify-center"
+            onClick={()=>handleDelete(warning.id)}
+            >
+              <img src={Trash} width={18} height={18} alt="" />
+            </button>
           </div>
         ))}
       </div>
