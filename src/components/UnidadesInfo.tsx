@@ -10,7 +10,6 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { IApartment } from "../Interfaces/IApartment";
 import { Apartment } from '../servises/api/Apartment'
-import { Modal } from "./Modal";
 
 export function UnidadesInfo() {
   const { id } = useParams();
