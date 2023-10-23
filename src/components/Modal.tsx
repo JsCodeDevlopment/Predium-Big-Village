@@ -1,13 +1,7 @@
 import { useNavigate } from "react-router-dom";
+import { IModalProps } from "../Interfaces/IModal";
 
-interface IModalProps {
-    icon: string
-    img: string
-    modalTitle: string
-    content: any
-}
-
-export function Modal ( {icon, img, modalTitle, content}: IModalProps ) {
+export function Modal ( { icon, img, modalTitle, content }: IModalProps ) {
   const navigate = useNavigate();
   const handleBack = () => {
     navigate(-1);
@@ -25,13 +19,11 @@ export function Modal ( {icon, img, modalTitle, content}: IModalProps ) {
           <button
             className="w-20 h-5 gap-1 bg-black/50 hover:bg-black/10 rounded-full flex items-center justify-center disabled:btn-disabled disabled:opacity-40 disabled:cursor-not-allowed"
             onClick={handleBack}
-            disabled={!canGoBack}
-          >
+            disabled={!canGoBack}>
             <img
               className="rounded-full w-5 h-4 cursor-pointer"
               src={img}
-              alt="esquerda"
-            />
+              alt="esquerda"/>
             <h1 className="text-xs text-black">Fechar</h1>
           </button>
         </div>
