@@ -16,7 +16,7 @@ export function VehicleModal() {
     type: "",
     cpf: "",
     model: "",
-    apartmentNumber: ""
+    apartmentNumber: "",
   });
 
   const fetchVehicles = async () => {
@@ -79,12 +79,11 @@ export function VehicleModal() {
         model: "",
         plate: "",
         type: "",
-        apartmentNumber: ""
+        apartmentNumber: "",
       });
     } catch (error) {
       console.error("Erro ao criar o veículo:", error);
     }
-
   };
   const handleBack = () => {
     navigate(-1); // Navegar para trás na pilha de histórico
@@ -92,15 +91,21 @@ export function VehicleModal() {
   const canGoBack = location.pathname !== "/";
 
   const handleDelete = async (id: string) => {
-    await Vehicles.delete(id)
-    await fetchVehicles()
-  }
+    await Vehicles.delete(id);
+    await fetchVehicles();
+  };
 
-      return (
-        <div className="flex items-center justify-center absolute w-full h-full bg-black/50 z-50 top-0">
-          <div className="absolute top-16 left-[44.8rem]">
+  return (
+    <div className="flex items-center justify-center absolute w-full h-full bg-black/50 z-50 top-0">
+      <div className="flex flex-col bg-white max-w-80 items-start rounded-lg shadow-sm">
+        <div className="flex p-2 justify-between w-full items-center self-stretch border-b-2 bg-black/20">
+          <div className="flex justfy-between items-center">
+            <div className="flex w-20 h-5 gap-1 items-center justify-center">
+              <h1 className="font-bold text-black">Veículos</h1>
+              <img src={Car} width={18} height={18} alt="" />
+            </div>
             <button
-              className="absolute top-0 left-20 w-20 h-5 gap-1 bg-white/80 hover:bg-white/50 rounded-full flex items-center justify-center disabled:btn-disabled disabled:opacity-40 disabled:cursor-not-allowed"
+              className="w-20 h-5 gap-1 bg-black/50 hover:bg-clack/10 rounded-full flex items-center justify-center"
               onClick={handleBack}
               disabled={!canGoBack}
             >
@@ -112,106 +117,104 @@ export function VehicleModal() {
               <h1 className="text-xs text-black">Fechar</h1>
             </button>
           </div>
-          <div className="flex flex-col bg-white max-w-80 items-start rounded-lg shadow-sm">
-            <div className="flex p-2 justify-between w-full items-center flex-1 border-b-2 bg-black/20">
-              <div className="flex gap-1 justify-between items-center">
-                <h1 className="font-bold text-black">Veículos</h1>
-                <img src={Car} width={18} height={18} alt="" />
-              </div>
-            </div>
-            <div className="flex p-2 gap-1 justify-center w-full items-center flex-1 border-b-2">
-              <h1 className="text-black">Adicionar Veículos</h1>
-            </div>
-            <div className="flex p-2 gap-1 justify-evenly flex-wrap w-96 items-center flex-1">
-              <input
-                type="text"
-                placeholder="CPF Proprietário"
-                name="cpf"
-                className="input input-ghost input-sm w-80 max-w-xs"
-                value={newVehicle.cpf}
-                onChange={handleInputChange}
-              />
-              <input
-                type="text"
-                placeholder="Número do AP"
-                name="apartmentNumber"
-                className="input input-ghost input-sm w-80 max-w-xs"
-                value={newVehicle.apartmentNumber}
-                onChange={handleInputChange}
-              />
-              <input
-                type="text"
-                placeholder="Marca"
-                name="brand"
-                className="input input-ghost input-sm w-80 max-w-xs"
-                value={newVehicle.brand}
-                onChange={handleInputChange}
-              />
-              <input
-                type="text"
-                placeholder="Modelo"
-                name="model"
-                className="input input-ghost input-sm w-80 max-w-xs"
-                value={newVehicle.model}
-                onChange={handleInputChange}
-              />
-              <input
-                type="text"
-                placeholder="Placa"
-                name="plate"
-                className="input input-ghost input-sm w-80 max-w-xs"
-                value={newVehicle.plate}
-                onChange={handleInputChange}
-              />
-              <input
-                type="text"
-                placeholder="Tipo"
-                name="type"
-                className="input input-ghost input-sm w-80 max-w-xs"
-                value={newVehicle.type}
-                onChange={handleInputChange}
-              />
-              <button
-                className="btn w-40 h-5 btn-accent"
-                onClick={handleAddVehicle}
-              >
-                Adicionar
-              </button>
-            </div>
-            <hr className="bg-black w-full" />
-            {vehicles.map((vehicle) => (
-              <div
-                key={vehicle.id}
-                className="flex p-2 gap-1 justify-between w-full items-center flex-1 rounded-md border-b-2"
-              >
-                <div className="p-1 bg-black/20 rounded-md w-20">
-                  <p className="text-black">
-                    Tipo: <span className="text-black">{vehicle.type === "Car" ? "Carro" : "Moto"}</span>
-                  </p>
-                </div>
-                <div className="p-1 bg-black/5 rounded-md w-20">
-                  <p className="text-black">
-                    Modelo: <span className="text-black">{vehicle.model}</span>
-                  </p>
-                </div>
-                <div className="p-1 bg-black/20 rounded-md w-20">
-                  <p className="text-black">
-                    Marca: <span className="text-black">{vehicle.brand}</span>
-                  </p>
-                </div>
-                <div className="p-1 bg-black/5 rounded-md w-20">
-                  <p className="text-black">
-                    Placa: <span className="text-black">{vehicle.plate}</span>
-                  </p>
-                </div>
-                <button className="w-10 h-10 gap-1 bg-black/10 hover:bg-black/30 cursor-pointer rounded-full flex items-center justify-center"
-                onClick={()=>handleDelete(vehicle.id)}
-                >
-                  <img src={Trash} width={18} height={18} alt="" />
-                </button>
-              </div>
-            ))}
-          </div>
         </div>
-      );
+        <div className="flex p-2 gap-1 justify-center w-full items-center flex-1 border-b-2">
+          <h1 className="text-black">Adicionar Veículos</h1>
+        </div>
+        <div className="flex p-2 gap-1 justify-evenly flex-wrap w-96 items-center flex-1">
+          <input
+            type="text"
+            placeholder="CPF Proprietário"
+            name="cpf"
+            className="input input-ghost input-sm w-80 max-w-xs"
+            value={newVehicle.cpf}
+            onChange={handleInputChange}
+          />
+          <input
+            type="text"
+            placeholder="Número do AP"
+            name="apartmentNumber"
+            className="input input-ghost input-sm w-80 max-w-xs"
+            value={newVehicle.apartmentNumber}
+            onChange={handleInputChange}
+          />
+          <input
+            type="text"
+            placeholder="Marca"
+            name="brand"
+            className="input input-ghost input-sm w-80 max-w-xs"
+            value={newVehicle.brand}
+            onChange={handleInputChange}
+          />
+          <input
+            type="text"
+            placeholder="Modelo"
+            name="model"
+            className="input input-ghost input-sm w-80 max-w-xs"
+            value={newVehicle.model}
+            onChange={handleInputChange}
+          />
+          <input
+            type="text"
+            placeholder="Placa"
+            name="plate"
+            className="input input-ghost input-sm w-80 max-w-xs"
+            value={newVehicle.plate}
+            onChange={handleInputChange}
+          />
+          <input
+            type="text"
+            placeholder="Tipo"
+            name="type"
+            className="input input-ghost input-sm w-80 max-w-xs"
+            value={newVehicle.type}
+            onChange={handleInputChange}
+          />
+          <button
+            className="btn w-40 h-5 btn-accent"
+            onClick={handleAddVehicle}
+          >
+            Adicionar
+          </button>
+        </div>
+        <hr className="bg-black w-full" />
+        {vehicles.map((vehicle) => (
+          <div
+            key={vehicle.id}
+            className="flex p-2 gap-1 justify-between w-full items-center flex-1 rounded-md border-b-2"
+          >
+            <div className="p-1 bg-black/20 rounded-md w-20">
+              <p className="text-black">
+                Tipo:{" "}
+                <span className="text-black">
+                  {vehicle.type === "Car" ? "Carro" : "Moto"}
+                </span>
+              </p>
+            </div>
+            <div className="p-1 bg-black/5 rounded-md w-20">
+              <p className="text-black">
+                Modelo: <span className="text-black">{vehicle.model}</span>
+              </p>
+            </div>
+            <div className="p-1 bg-black/20 rounded-md w-20">
+              <p className="text-black">
+                Marca: <span className="text-black">{vehicle.brand}</span>
+              </p>
+            </div>
+            <div className="p-1 bg-black/5 rounded-md w-20">
+              <p className="text-black">
+                Placa: <span className="text-black">{vehicle.plate}</span>
+              </p>
+            </div>
+            <button
+              className="w-10 h-10 gap-1 bg-black/10 hover:bg-black/30 cursor-pointer rounded-full flex items-center justify-center"
+              onClick={() => handleDelete(vehicle.id)}
+            >
+              <img src={Trash} width={18} height={18} alt="" />
+            </button>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
 }

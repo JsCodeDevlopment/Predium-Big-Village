@@ -27,7 +27,7 @@ const links = [
   },
   {
     text: "Veículos",
-    href: "#veiculos",
+    href: "vehicle-modal",
     image: Car,
   },
   {

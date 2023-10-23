@@ -6,7 +6,7 @@ import { Header } from "./components/Header";
 import { Unidades } from "./components/Unidades";
 import { LoginPage } from "./components/LoginPage";
 import { Navigation } from "./components/Navegação";
-import { AvisosModal } from "./components/AvisosModal";
+import { AvisosModal } from "./components/Warnings/AvisosModal";
 import { MultasModal } from "./components/MultasModal";
 import { ReclamacoesModal } from "./components/ReclamacoesModal";
 import { VehicleModal } from "./components/VehicleModal";

@@ -3,13 +3,14 @@ import { OwnerInfo } from "./OwnerInfo";
 import { MoradoresInfo } from "./MoradoresInfo";
 import { VeiculosInfo } from "./VeiculosInfo";
 import { PetInfo } from "./PetInfo";
-import { AvisosInfo } from "./AvisosInfo";
+import { AvisosInfo } from "./Warnings/AvisosInfo";
 import { MultasInfo } from "./MultasInfo";
 import { ReclamacoesInfo } from "./ReclamacoesInfo";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { IApartment } from "../Interfaces/IApartment";
 import { Apartment } from '../servises/api/Apartment'
+import { Modal } from "./Modal";
 
 export function UnidadesInfo() {
   const { id } = useParams();

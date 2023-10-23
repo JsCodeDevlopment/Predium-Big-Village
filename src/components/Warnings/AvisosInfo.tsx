@@ -1,6 +1,6 @@
-import Msg from "../assets/images/mensagem.png";
+import Msg from "../../assets/images/mensagem.png";
 import { useNavigate } from "react-router-dom";
-import { IWarningsInfProps } from "../Interfaces/IWarning";
+import { IWarningsInfProps } from "../../Interfaces/IWarning";
 
 export function AvisosInfo({ warning }: IWarningsInfProps) {
   const navigate = useNavigate();
