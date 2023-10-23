@@ -3,7 +3,7 @@ import Close from "../../assets/images/esquerda.png";
 import { Modal } from "../Modal";
 import { WarningContent } from "./WarningContent";
 
-export function AvisosModal() {
+export function WarningModal() {
   return (
     <Modal
       icon={Avisos}

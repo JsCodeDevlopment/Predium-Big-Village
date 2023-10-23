@@ -1,9 +1,9 @@
 import House from "../assets/images/house.png";
 import { OwnerInfo } from "./OwnerInfo";
 import { MoradoresInfo } from "./MoradoresInfo";
-import { VeiculosInfo } from "./VeiculosInfo";
+import { VehiclesInfo } from "./Vehicles/VehiclesInfo";
 import { PetInfo } from "./PetInfo";
-import { AvisosInfo } from "./Warnings/AvisosInfo";
+import { WarningInfo } from "./Warnings/WarningInfo";
 import { MultasInfo } from "./MultasInfo";
 import { ReclamacoesInfo } from "./ReclamacoesInfo";
 import { useParams } from "react-router-dom";
@@ -80,9 +80,9 @@ export function UnidadesInfo() {
         <div className="flex gap-4 justify-between px-5 items-start flex-wrap">
           <OwnerInfo />
           <MoradoresInfo residents={data.residents} />
-          <VeiculosInfo vehicle={data.vehicles} />
+          <VehiclesInfo vehicle={data.vehicles} />
           <PetInfo />
-          <AvisosInfo warning={data.warnings}/>
+          <WarningInfo warning={data.warnings}/>
           <MultasInfo />
           <ReclamacoesInfo />
         </div>

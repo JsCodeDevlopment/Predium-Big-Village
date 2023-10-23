@@ -1,8 +1,8 @@
 import { useNavigate } from "react-router-dom";
 import Car from "../assets/images/car.png";
-import { IVehiclesInfProps } from "../Interfaces/Vehicles";
+import { IVehiclesInfProps } from "../../Interfaces/Vehicles";
 
-export function VeiculosInfo({ vehicle }: IVehiclesInfProps) {
+export function VehiclesInfo({ vehicle }: IVehiclesInfProps) {
   const navigate = useNavigate();
 
   function handleClick() {

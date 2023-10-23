@@ -6,10 +6,10 @@ import { Header } from "./components/Header";
 import { Unidades } from "./components/Unidades";
 import { LoginPage } from "./components/LoginPage";
 import { Navigation } from "./components/Navegação";
-import { AvisosModal } from "./components/Warnings/AvisosModal";
+import { WarningModal } from "./components/Warnings/WarningModal";
 import { MultasModal } from "./components/MultasModal";
 import { ReclamacoesModal } from "./components/ReclamacoesModal";
-import { VehicleModal } from "./components/VehicleModal";
+import { VehicleModal } from "./components/Vehicles/VehicleModal";
 import { PetsModal } from "./components/PetsModal";
 
 function App() {
@@ -24,7 +24,7 @@ function App() {
               <Route path="/login" element={<LoginPage />} />
               <Route path="/" element={<DashboardContainer />}>
                 <Route index element={<Unidades />} />
-                <Route path="/aviso-modal" element={<AvisosModal />} />
+                <Route path="/aviso-modal" element={<WarningModal />} />
                 <Route path="/vehicle-modal" element={<VehicleModal />} />
                 <Route path="/pets-modal" element={<PetsModal />} />
                 <Route path="/reclamacoes-modal" element={<ReclamacoesModal />} />

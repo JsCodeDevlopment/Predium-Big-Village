@@ -2,7 +2,7 @@ import Msg from "../../assets/images/mensagem.png";
 import { useNavigate } from "react-router-dom";
 import { IWarningsInfProps } from "../../Interfaces/IWarning";
 
-export function AvisosInfo({ warning }: IWarningsInfProps) {
+export function WarningInfo({ warning }: IWarningsInfProps) {
   const navigate = useNavigate();
 
   function handleClick() {
