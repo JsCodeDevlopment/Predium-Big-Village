@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
-import Car from "../assets/images/car.png";
-import Trash from "../assets/images/trash.png";
-import Close from "../assets/images/esquerda.png";
+import Car from "../../assets/images/car.png";
+import Trash from "../../assets/images/trash.png";
+import Close from "../../assets/images/esquerda.png";
 import { IVehicleState, IVehicles } from "../../Interfaces/Vehicles";
 import { baseUrl } from "../../servises/baseUrl";
 import { useEffect, useState } from "react";

@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import Car from "../assets/images/car.png";
+import Car from "../../assets/images/car.png";
 import { IVehiclesInfProps } from "../../Interfaces/Vehicles";
 
 export function VehiclesInfo({ vehicle }: IVehiclesInfProps) {
