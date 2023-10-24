@@ -25,33 +25,24 @@ export function VehiclesInfo({ vehicle }: IVehiclesInfProps) {
           <h1 className="text-black/70">Nenhum veículo por aqui 🙈</h1>
         </div>
       ) : (
-        vehicle.map((vehicle) => (
-          <div
-            key={vehicle.id}
-            className="flex p-2 gap-1 justify-between w-full items-center flex-1 rounded-md border-b-2"
-          >
-            <div className="p-1 bg-black/20 rounded-md w-20">
-              <p className="text-black">
-                Tipo: <span className="text-black">{vehicle.type === "Car" ? "Carro" : "Moto"}</span>
-              </p>
-            </div>
-            <div className="p-1 bg-black/5 rounded-md w-20">
-              <p className="text-black">
-                Modelo: <span className="text-black">{vehicle.model}</span>
-              </p>
-            </div>
-            <div className="p-1 bg-black/20 rounded-md w-20">
-              <p className="text-black">
-                Marca: <span className="text-black">{vehicle.brand}</span>
-              </p>
-            </div>
-            <div className="p-1 bg-black/5 rounded-md w-20">
-              <p className="text-black">
-                Placa: <span className="text-black">{vehicle.plate}</span>
-              </p>
-            </div>
-          </div>
-        ))
+        <table className="flex items-center justify-center p-1 rounded-md">
+          <tbody>
+            <tr>
+              <th className="p-1 border-spacing-1 border-2 border-black/20 text-black">Tipo</th>
+              <th className="p-1 border-spacing-1 border-2 border-black/20 text-black">Modelo</th>
+              <th className="p-1 border-spacing-1 border-2 border-black/20 text-black">Marca</th>
+              <th className="p-1 border-spacing-1 border-2 border-black/20 text-black">Placa</th>
+            </tr>
+            {vehicle.map((vehicle) => (
+              <tr key={vehicle.id}>
+                <td className="p-1 border-spacing-1 border-2 border-black/20 text-black/60">{vehicle.type === "Car" ? "Carro" : "Moto"}</td>
+                <td className="p-1 border-spacing-1 border-2 border-black/20 text-black/60">{vehicle.model}</td>
+                <td className="p-1 border-spacing-1 border-2 border-black/20 text-black/60">{vehicle.brand}</td>
+                <td className="p-1 border-spacing-1 border-2 border-black/20 text-black/60">{vehicle.plate}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       )}
     </div>
   );

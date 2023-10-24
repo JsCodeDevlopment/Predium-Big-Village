@@ -175,8 +175,7 @@ export function VehicleContent() {
           </div>
           <button
             className="w-10 h-10 gap-1 bg-black/10 hover:bg-black/30 cursor-pointer rounded-full flex items-center justify-center"
-            onClick={() => handleDelete(vehicle.id)}
-          >
+            onClick={() => handleDelete(vehicle.id)}>
             <img src={Trash} width={18} height={18} alt="" />
           </button>
         </div>
