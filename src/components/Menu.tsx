@@ -17,7 +17,7 @@ const links = [
   },
   {
     text: "Moradores",
-    href: "#moradores",
+    href: "resident-modal",
     image: Moradores,
   },
   {

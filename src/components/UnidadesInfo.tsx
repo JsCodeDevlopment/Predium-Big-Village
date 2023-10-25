@@ -1,6 +1,6 @@
 import House from "../assets/images/house.png";
 import { OwnerInfo } from "./OwnerInfo";
-import { MoradoresInfo } from "./MoradoresInfo";
+import { ResidentInfo } from "./Residents/ResidentInfo";
 import { VehiclesInfo } from "./Vehicles/VehiclesInfo";
 import { PetInfo } from "./PetInfo";
 import { WarningInfo } from "./Warnings/WarningInfo";
@@ -79,7 +79,7 @@ export function UnidadesInfo() {
         </div>
         <div className="flex gap-4 justify-between px-5 items-start flex-wrap">
           <OwnerInfo />
-          <MoradoresInfo residents={data.residents} />
+          <ResidentInfo residents={data.residents} />
           <VehiclesInfo vehicle={data.vehicles} />
           <PetInfo />
           <WarningInfo warning={data.warnings}/>

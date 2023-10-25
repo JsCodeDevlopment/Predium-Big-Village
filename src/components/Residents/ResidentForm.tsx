@@ -1,4 +1,4 @@
-export function FormNewMorador() {
+export function ResidentForm() {
   return (
     <>
       <label className="label">
