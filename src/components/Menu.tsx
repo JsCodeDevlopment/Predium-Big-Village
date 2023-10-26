@@ -1,4 +1,3 @@
-import Person from "../assets/images/user2.png";
 import Moradores from "../assets/images/moradores.png";
 import LogOut from "../assets/images/sign-out.png";
 import Car from "../assets/images/car.png";
