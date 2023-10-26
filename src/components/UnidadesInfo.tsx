@@ -2,7 +2,7 @@ import House from "../assets/images/house.png";
 import { OwnerInfo } from "./OwnerInfo";
 import { ResidentInfo } from "./Residents/ResidentInfo";
 import { VehiclesInfo } from "./Vehicles/VehiclesInfo";
-import { PetInfo } from "./PetInfo";
+import { PetInfo } from "./Pets/PetInfo";
 import { WarningInfo } from "./Warnings/WarningInfo";
 import { MultasInfo } from "./MultasInfo";
 import { ReclamacoesInfo } from "./ReclamacoesInfo";

@@ -10,7 +10,7 @@ import { WarningModal } from "./components/Warnings/WarningModal";
 import { MultasModal } from "./components/MultasModal";
 import { ReclamacoesModal } from "./components/ReclamacoesModal";
 import { VehicleModal } from "./components/Vehicles/VehicleModal";
-import { PetsModal } from "./components/PetsModal";
+import { PetsModal } from "./components/Pets/PetsModal";
 import { ResidentModal } from "./components/Residents/ResidentModal";
 
 function App() {
@@ -31,7 +31,7 @@ function App() {
                 <Route path="/pets-modal" element={<PetsModal />} />
                 <Route path="/reclamacoes-modal" element={<ReclamacoesModal />} />
                 <Route path="/multas-modal" element={<MultasModal />} />
-                <Route path="unidades/:id" element={<UnidadesInfo />} />
+                <Route path="/unidades/:id" element={<UnidadesInfo />} />
               </Route>
             </Routes>
           </div>

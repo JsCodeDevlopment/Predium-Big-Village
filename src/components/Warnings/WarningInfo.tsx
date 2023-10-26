@@ -1,13 +1,9 @@
 import Msg from "../../assets/images/mensagem.png";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { IWarningsInfProps } from "../../Interfaces/IWarning";
 
 export function WarningInfo({ warning }: IWarningsInfProps) {
-  const navigate = useNavigate();
 
-  function handleClick() {
-    navigate("/aviso-modal", { replace: true });
-  }
   return (
     <div className="flex flex-col max-w-72 items-start rounded-lg shadow-sm">
       <div className="flex p-2 justify-between w-full items-center flex-1 border-b-2 bg-black/20">
@@ -15,9 +11,7 @@ export function WarningInfo({ warning }: IWarningsInfProps) {
           <h1 className="font-bold text-black">Avisos </h1>
           <img src={Msg} width={18} height={18} alt="" />
         </div>
-        <button className="btn-xs btn-accent" onClick={handleClick}>
-          Adicionar
-        </button>
+        <Link className="btn-xs btn-accent" to="/warning-modal">Adicionar</Link>
       </div>
       {warning.length === 0 ? (
         <div className="flex p-1 border-b-2">

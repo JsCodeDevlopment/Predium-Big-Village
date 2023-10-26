@@ -1,14 +1,9 @@
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { IMoradoresInfProps } from "../../Interfaces/IResident";
 import AddUser from "../../assets/images/adduser.png";
 import Trash from "../../assets/images/trash.png";
 
 export function ResidentInfo({ residents }: IMoradoresInfProps) {
-  const navigate = useNavigate();
-
-  function handleClick() {
-    navigate("/resident-modal", { replace: true });
-  }
   
   return (
     <div className="flex flex-col max-w-72 items-start rounded-lg shadow-sm">
@@ -17,7 +12,7 @@ export function ResidentInfo({ residents }: IMoradoresInfProps) {
           <h1 className="font-bold text-black">Moradores</h1>
           <img src={AddUser} width={18} height={18} alt="" />
         </div>
-        <button className="btn-xs btn-accent" onClick={handleClick}>Adicionar</button>
+        <Link className="btn-xs btn-accent" to="/resident-modal">Adicionar</Link>
       </div>
       {residents.length === 0 ? (
         <div className="flex p-1 border-b-2">

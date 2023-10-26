@@ -11,11 +11,6 @@ import { useLogin } from "../context/loginContext";
 
 const links = [
   {
-    text: "Profile",
-    href: "#profile",
-    image: Person,
-  },
-  {
     text: "Moradores",
     href: "resident-modal",
     image: Moradores,
@@ -32,7 +27,7 @@ const links = [
   },
   {
     text: "Pets",
-    href: "#pets",
+    href: "pets-modal",
     image: Pet,
   },
   {
@@ -55,7 +50,7 @@ export function MenuOptions({ setMenuVisible }: IMenuOptionsProps) {
   }
   return (
     <div className="inline-flex flex-col items-center absolute bg-white rounded-sm shadow-md top-[4.3rem] right-2">
-      <ul className="flex p-2 flex-col items-start w-48 h-96 menu">
+      <ul className="flex p-2 flex-col items-start w-48 h-80 menu">
         <li className="flex gap-2 py-1 px-2 w-full  text-black font-bold border-b border-black/20">
           Opções
         </li>

@@ -1,13 +1,8 @@
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Car from "../../assets/images/car.png";
 import { IVehiclesInfProps } from "../../Interfaces/Vehicles";
 
 export function VehiclesInfo({ vehicle }: IVehiclesInfProps) {
-  const navigate = useNavigate();
-
-  function handleClick() {
-    navigate("/vehicle-modal", { replace: true });
-  }
 
   return (
     <div className="flex flex-col max-w-80 items-start rounded-lg shadow-sm">
@@ -16,9 +11,7 @@ export function VehiclesInfo({ vehicle }: IVehiclesInfProps) {
           <h1 className="font-bold text-black">Veículos</h1>
           <img src={Car} width={18} height={18} alt="" />
         </div>
-        <button className="btn-xs btn-accent" onClick={handleClick}>
-          Adicionar
-        </button>
+        <Link className="btn-xs btn-accent" to="/vehicle-modal">Adicionar</Link>
       </div>
       {vehicle.length === 0 ? (
         <div className="flex p-1 border-b-2">
